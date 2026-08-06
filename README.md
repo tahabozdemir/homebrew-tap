@@ -6,14 +6,22 @@ router for macOS.
 ## Install
 
 ```sh
+brew install --cask tahabozdemir/tap/eqbase
+```
+
+That single command taps this repo, trusts the cask and installs EQBase. Naming the cask in full
+is what authorises it: Homebrew 6 will not load a cask from a third-party tap unless you either
+trusted it beforehand or asked for it by its full `owner/tap/cask` name.
+
+Afterwards the short name works for everything else (`brew upgrade --cask eqbase`,
+`brew uninstall --cask eqbase`), since the trust is recorded. To tap first and install by short
+name instead, trust the tap explicitly:
+
+```sh
 brew tap tahabozdemir/tap
 brew trust tahabozdemir/tap
 brew install --cask eqbase
 ```
-
-The `brew trust` step is required once: Homebrew 6 refuses to load casks from a third-party tap
-until you trust it. Without it, `brew install --cask tahabozdemir/tap/eqbase` stops with
-"Refusing to load cask ... from untrusted tap".
 
 ## Upgrade
 
