@@ -2,7 +2,11 @@ cask "eqbase" do
   version "1.0.4"
   sha256 "059ebfca8d58f83b7b359ef7f1d99e74e98bbff6fc2c464b15a0f6960c2ffa34"
 
-  url "https://updates.eqbase.app/EQBase-#{version}.dmg"
+  # The VERSIONED artifact on the download host. Not dl.eqbase.app/EQBase.dmg: that alias is
+  # rewritten on every release and its checksum would go stale the moment the next one ships.
+  # Not updates.eqbase.app either, even though it serves the same file: that host is the update
+  # feed, so a cask install would be booked as an existing user updating rather than a new one.
+  url "https://dl.eqbase.app/EQBase-#{version}.dmg"
   name "EQBase"
   desc "System-wide equalizer, volume control and audio router"
   homepage "https://eqbase.app/"
