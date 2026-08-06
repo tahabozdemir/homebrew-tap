@@ -1,4 +1,4 @@
-# homebrew-eqbase
+# homebrew-tap
 
 Homebrew tap for [EQBase](https://eqbase.app), a system-wide equalizer, volume control and audio
 router for macOS.
@@ -6,15 +6,14 @@ router for macOS.
 ## Install
 
 ```sh
-brew install --cask tahabozdemir/eqbase/eqbase
-```
-
-Or tap first, then install by name:
-
-```sh
-brew tap tahabozdemir/eqbase
+brew tap tahabozdemir/tap
+brew trust tahabozdemir/tap
 brew install --cask eqbase
 ```
+
+The `brew trust` step is required once: Homebrew 6 refuses to load casks from a third-party tap
+until you trust it. Without it, `brew install --cask tahabozdemir/tap/eqbase` stops with
+"Refusing to load cask ... from untrusted tap".
 
 ## Upgrade
 
