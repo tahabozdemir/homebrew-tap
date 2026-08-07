@@ -32,15 +32,22 @@ nothing to do. To pull a new version through Homebrew anyway:
 brew update && brew upgrade --cask eqbase
 ```
 
+## First launch
+
+EQBase sets itself up without installing a driver and without an administrator password. It asks
+for one permission, System Audio Recording, which is how macOS classes reading the sound your Mac
+plays. Two optional features (Audiophile mode and Pro audio routing) do use a small user-space
+Core Audio driver, and the app offers to install it at the moment you turn one of them on.
+
 ## Uninstall
 
 ```sh
 brew uninstall --cask eqbase
 ```
 
-This also removes the HAL driver at `/Library/Audio/Plug-Ins/HAL/EQBaseDriver.driver` (sudo is
-requested for that step) and restarts `coreaudiod` so the virtual device disappears. To remove
-presets, settings and caches as well:
+If you ever turned on a feature that installed the driver, this also removes the HAL plug-in at
+`/Library/Audio/Plug-Ins/HAL/EQBaseDriver.driver` (sudo is requested for that step) and restarts
+`coreaudiod` so the virtual device disappears. To remove presets, settings and caches as well:
 
 ```sh
 brew uninstall --zap --cask eqbase
@@ -48,6 +55,6 @@ brew uninstall --zap --cask eqbase
 
 ## Notes
 
-The download is the same notarized, Developer ID-signed DMG served from
-`updates.eqbase.app`, the artifact the app's own updater uses. Requires macOS 14 (Sonoma) or later;
-universal (Apple Silicon and Intel).
+The download is the same notarized, Developer ID-signed DMG the site serves, fetched from
+`dl.eqbase.app` at its versioned URL so the pinned checksum stays valid. Requires macOS 14
+(Sonoma) or later; universal (Apple Silicon and Intel).

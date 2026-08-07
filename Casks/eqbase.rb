@@ -23,10 +23,13 @@ cask "eqbase" do
 
   app "EQBase.app"
 
-  # EQBase installs a HAL plug-in (the virtual audio device) and a privileged
-  # helper daemon that performs that install. Both are removed here; the driver
-  # lives outside the app bundle, so its removal needs sudo, and coreaudiod has
-  # to be restarted for the virtual device to disappear from the audio list.
+  # A normal EQBase setup installs nothing outside the app bundle: it reads the system mix
+  # through a Core Audio process tap. But turning on Audiophile mode or Pro audio routing
+  # installs a HAL plug-in (the virtual audio device) plus a privileged helper daemon that
+  # performs that install, so uninstall has to clean both up whether or not this Mac ever did.
+  # The driver lives outside the app bundle, so removing it needs sudo, and coreaudiod has to be
+  # restarted for the virtual device to disappear from the audio list. Every step is
+  # must_succeed-tolerant or a no-op on a Mac that never installed the driver.
   uninstall launchctl: "com.boldbiscuit.eqbase.helper",
             quit:      "com.boldbiscuit.eqbase",
             script:    {
