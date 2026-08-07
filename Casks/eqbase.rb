@@ -19,6 +19,15 @@ cask "eqbase" do
   end
 
   auto_updates true
+  # The app's REAL floor is macOS 14.4 (LSMinimumSystemVersion, and sparkle:minimumSystemVersion
+  # on the appcast): EQBase captures through a Core Audio process tap, which needs 14.2, and taps
+  # were unreliable before 14.4. Homebrew cannot express that. A cask floor may only name a major
+  # release: `depends_on macos: "14.4"` is rejected outright ("unknown or unsupported macOS
+  # version"), and the `">= :sonoma"` string form is deprecated with no replacement. So this stays
+  # the bare symbol, which already means ">= 14", and 14.0-14.3 is covered by macOS itself
+  # refusing to launch the app rather than by brew refusing to install it. Do not "fix" this to a
+  # point release; verify any change with `brew ruby` before trusting `brew style`, which passes
+  # a value Homebrew rejects at load time.
   depends_on macos: :sonoma
 
   app "EQBase.app"
