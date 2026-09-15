@@ -1,6 +1,6 @@
 cask "eqbase" do
-  version "1.6.0"
-  sha256 "1af15571c6f38678581b209eebb7705ca5f96794c6614cae8fd64499ab5ab86a"
+  version "1.6.1"
+  sha256 "cdec54f8b9a77fcaabb19644f5e961895b2ec50eaa5ea9faa8a831f52bee1868"
 
   # The VERSIONED artifact on the download host. Not dl.eqbase.app/EQBase.dmg: that alias is
   # rewritten on every release and its checksum would go stale the moment the next one ships.
